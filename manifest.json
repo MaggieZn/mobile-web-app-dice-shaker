@@ -1,7 +1,7 @@
 {
     "name": "Dice Shaker",
     "short_name": "Dice",
-    "start_url": "https://dice-shake.com/index.html",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "description": "A simple Progressive Web App example.",
