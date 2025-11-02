@@ -1,5 +1,14 @@
+/*Logic:
+- once button is pressed
+  - wait for either Tap or Accelerometer trigger
+  - generate number once stopped accelerometer
+  - generate number once tapped again*/
+
 function generate(){
-    document.getElementById('generate').innerHTML=getd20Roll();
+  addEventListener("deviceorientationabsolute", function(){
+      document.getElementById('generate').innerHTML=getd20Roll();
+  })
+
 }
 
 function getd20Roll() {
