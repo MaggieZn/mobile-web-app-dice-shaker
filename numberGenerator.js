@@ -4,9 +4,39 @@
   - generate number once stopped accelerometer
   - generate number once tapped again*/
 
+
+//stores numbers rolled
+const STORAGE_KEY="dice_history"
+
 function generate(){
   number=getd20Roll();
   document.getElementById('generate').innerHTML=number;
+
+  storeNum(number);
+}
+
+/*Requests Persistent Storage from browser/device*/
+async function requestPersStore() {
+  // Request persistent storage for site
+  if (navigator.storage && navigator.storage.persist) {
+    const isPersisted = await navigator.storage.persist();
+    console.log(`Persisted storage granted: ${isPersisted}`);
+  }
+
+}
+
+/*Stores number in local storage */
+function storeNum(num){
+  requestPersStore();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(num))
+}
+
+/*Returns number from local storage*/
+function getNum(){
+  const data=localStorage.getItem(STORAGE_KEY);
+
+  const getNumbers=data?JSON.parse(data):[];
+  return getNumbers
 }
 
 function addToHistory(){
@@ -21,7 +51,7 @@ function addToHistory(){
                 <small class="text-body-secondary">And some muted small print.</small>
             </li>`;
   
-  document.getElementById('random').innerHTML="lolxd";
+  document.getElementById('random').innerHTML=JSON.stringify(getNum());
   document.getElementById('date').innerHTML=Date();
 }
 
