@@ -47,6 +47,8 @@ function getNum(){
 
 function addToHistory(){
   const nums=getNum();
+  console.log(nums)
+
   if (nums.length==0){
     document.getElementById('history').innerHTML=
             `<li class="list-group-item">
