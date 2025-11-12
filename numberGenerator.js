@@ -12,7 +12,7 @@ function generate(){
   number=getd20Roll();
   document.getElementById('generate').innerHTML=number;
 
-  storeNum(number);
+  storeNum(number, Date());
 }
 
 /*Requests Persistent Storage from browser/device*/
@@ -26,9 +26,15 @@ async function requestPersStore() {
 }
 
 /*Stores number in local storage */
-function storeNum(num){
+function storeNum(num, date){
   requestPersStore();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(num))
+
+  //rolled numbers variable and pushed to array
+  var rolledNums=getNum();
+  var position=rolledNums.length+1
+  rolledNums.push({num, date, position});
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(rolledNums));
 }
 
 /*Returns number from local storage*/
@@ -40,19 +46,31 @@ function getNum(){
 }
 
 function addToHistory(){
-  //const list=document.createElement("li")
-  document.getElementById('history').innerHTML=
+  const nums=getNum();
+  if (nums.length==0){
+    document.getElementById('history').innerHTML=
             `<li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary" id="date">3 days ago</small>
+                    <h5 class="mb-1">Nothing here!</h5>
                 </div>
-                <p class="mb-1" id="random">Some placeholder content in a paragraph.</p>
+            </li>`;
+    return;
+  }
+
+  nums.forEach((num) => {
+      document.getElementById('history').innerHTML=
+            `<li class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Heading</h5>
+                    <small class="text-body-secondary" id="date">${date}</small>
+                </div>
+                <p class="mb-1">${num}</p>
                 <small class="text-body-secondary">And some muted small print.</small>
             </li>`;
-  
-  document.getElementById('random').innerHTML=JSON.stringify(getNum());
-  document.getElementById('date').innerHTML=Date();
+    //document.getElementById('random').innerHTML=JSON.stringify(getNum());
+    //document.getElementById('date').innerHTML=Date();
+  });
+
 }
 
 function getd20Roll() {
