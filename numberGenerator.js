@@ -64,9 +64,9 @@ function addToHistory(){
             `<li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">Heading</h5>
-                    <small class="text-body-secondary">${date}</small>
+                    <small class="text-body-secondary">${nums.date}</small>
                 </div>
-                <p class="mb-1">${num}</p>
+                <p class="mb-1">${nums.num}</p>
                 <small class="text-body-secondary">And some muted small print.</small>
             </li>`;
     //document.getElementById('random').innerHTML=JSON.stringify(getNum());
