@@ -63,9 +63,6 @@ function addToHistory(){
 
   nums.forEach((num) => {
       historyContainer.appendChild(historyListing(num));
-            
-    //document.getElementById('random').innerHTML=JSON.stringify(getNum());
-    //document.getElementById('date').innerHTML=Date();
   });
 
 }
