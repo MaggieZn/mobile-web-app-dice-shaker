@@ -49,8 +49,10 @@ function addToHistory(){
   const nums=getNum();
   console.log(nums)
 
+  const historyContainer=document.getElementById('history')
+
   if (nums.length==0){
-    document.getElementById('history').innerHTML=
+    historyContainer.innerHTML=
             `<li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">Nothing here!</h5>
@@ -60,8 +62,20 @@ function addToHistory(){
   }
 
   nums.forEach((num) => {
-      document.getElementById('history').innerHTML=
-            `<li class="list-group-item">
+      historyContainer.appendChild(historyListing(num));
+            
+    //document.getElementById('random').innerHTML=JSON.stringify(getNum());
+    //document.getElementById('date').innerHTML=Date();
+  });
+
+}
+
+/*Creates a list object to allow history*/
+function historyListing(num){
+  const liElement=document.createElement("li")
+
+  liElement.className="list-group-item"
+  liElement.innerHTML=`<li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">Heading</h5>
                     <small class="text-body-secondary">${num.date}</small>
@@ -69,12 +83,11 @@ function addToHistory(){
                 <p class="mb-1">${num.num}</p>
                 <small class="text-body-secondary">And some muted small print.</small>
             </li>`;
-    //document.getElementById('random').innerHTML=JSON.stringify(getNum());
-    //document.getElementById('date').innerHTML=Date();
-  });
 
+  return liElement;
 }
 
+/*generates a random d20 roll (1-20 number)*/
 function getd20Roll() {
   return Math.floor(Math.random() * 20)+ 1;
 }
