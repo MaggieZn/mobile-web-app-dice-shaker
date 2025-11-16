@@ -22,18 +22,20 @@ function generate(){
     const {acceleration} = event;
     const motionStop=false;
 
-    const accelerationX=event.acceleration.x
-    const accelerationY=event.acceleration.y
-    const accelerationZ=event.acceleration.z
+    const accelerationX=acceleration.alpha
 
     if (acceleration) {
-      if(accelerationX==0 && accelerationY==0 && accelerationZ==0){
-        motionStop=true;
+      if(accelerationX==0){
+        setTimeout(() => {
+              genNum();
+              return;
+            }, 500);
+        //getNum();
+        //return;
       }
 
       if(motionStop==true){
-        getNum();
-        return;
+        
       }
 
       /*setTimeout(() => {
