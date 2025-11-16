@@ -8,11 +8,64 @@
 //stores numbers rolled
 const STORAGE_KEY="dice_history"
 
+//stores accelerometer permission
+var accelerometerPerm=false;
+
 function generate(){
+  requestPermission();
+  
+  /*document.body.addEventListener("click", genNum());
+  document.body.removeEventListener("click", genNum(), false);
+  return;*/
+  window.addEventListener('devicemotion', (event) => {
+    const {acceleration} = event;
+
+    if (acceleration) {
+      genNum();
+    }
+  })
+}
+
+function genNum(){
   number=getd20Roll();
   document.getElementById('generate').innerHTML=number;
-
   storeNum(number, Date());
+}
+
+/*Requests device permsission for accelerometer usage (if available) */
+function requestPermission() {
+    if (window.DeviceMotionEvent) {
+      console.log('DeviceMotionEvent is supported');
+    } 
+    else {
+      console.error('DeviceMotionEvent not supported on this device');
+      return;
+    }
+
+    if (accelerometerPerm!=true){
+      if (typeof DeviceMotionEvent.requestPermission=='function') {
+        DeviceMotionEvent.requestPermission().then((response) => {
+          if (response=='granted') {
+            console.log('Permission granted');
+            accelerometerPerm=true;
+          }
+          else {
+            console.error('Permission denied');
+          }
+        })
+        .catch((error) => {
+          console.error('Permission request error:', error);
+          return;
+        });
+      }
+      else {
+        console.log('requestPermission not required or supported on this browser');
+      }
+    }
+}
+
+function motionRoll(){
+
 }
 
 /*Requests Persistent Storage from browser/device*/
