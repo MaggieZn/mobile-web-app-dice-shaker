@@ -13,15 +13,20 @@ var accelerometerPerm=false;
 
 function generate(){
   requestPermission();
+  localStorage.clear();
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
   window.addEventListener('devicemotion', (event) => {
     const {acceleration} = event;
+    const motionStop=false;
 
     if (acceleration) {
-      genNum();
+      setTimeout(() => {
+              genNum();
+              windows.removeEventListener('devicemotion',(event))
+            }, 500);
     }
   })
 }
