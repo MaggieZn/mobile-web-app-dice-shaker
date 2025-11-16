@@ -10,10 +10,10 @@ const STORAGE_KEY="dice_history"
 
 //stores accelerometer permission
 var accelerometerPerm=false;
+localStorage.clear();
 
 function generate(){
   requestPermission();
-  localStorage.clear();
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
@@ -22,11 +22,23 @@ function generate(){
     const {acceleration} = event;
     const motionStop=false;
 
+    const accelerationX=event.acceleration.x
+    const accelerationY=event.acceleration.y
+    const accelerationZ=event.acceleration.z
+
     if (acceleration) {
-      setTimeout(() => {
+      if(accelerationX==0 && accelerationY==0 && accelerationZ==0){
+        motionStop=true;
+      }
+
+      if(motionStop==true){
+        getNum();
+        return;
+      }
+
+      /*setTimeout(() => {
               genNum();
-              windows.removeEventListener('devicemotion',(event))
-            }, 500);
+            }, 500);*/
     }
   })
 }
