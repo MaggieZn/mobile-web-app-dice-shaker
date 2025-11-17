@@ -20,9 +20,9 @@ function generate(){
   return;*/
   window.addEventListener('devicemotion', (event) => {
     const {acceleration} = event;
-    motionStop=false;
 
     if (acceleration) {
+      motionStop=false;
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
       if(magnitude>1 && motionStop==false){
