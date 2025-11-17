@@ -15,6 +15,7 @@ var motionStop=false;
 function generate(){
   requestPermission();
   var number;
+  motionStop=false;
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
@@ -23,19 +24,23 @@ function generate(){
     const {acceleration} = event;
 
     if (acceleration) {
-      motionStop=false;
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
-      if(magnitude>1 && motionStop==false){
+      if(magnitude>2 && motionStop==false){
         number=getd20Roll()
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
-              storeNum(number,Date())
               motionStop=true;
               document.getElementById('test').innerHTML=motionStop;
+              
             }, 1500);
       }
-      }
+    }
+    else{
+      localStorage.clear();
+      storeNum(number,Date())
+      return;
+    }
   })
 }
 
