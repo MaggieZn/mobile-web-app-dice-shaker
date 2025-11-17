@@ -26,10 +26,12 @@ function generate(){
 
     if (acceleration) {
       if(magnitude>1 && motionStop==false){
+        numer=getd20Roll()
+        document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
+              storeNum(number, Date())
               //if (magnitude<=1){
-                genNum();
               //}
             }, 500);
         //getNum();
