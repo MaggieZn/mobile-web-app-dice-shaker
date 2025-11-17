@@ -32,7 +32,8 @@ function generate(){
             setTimeout(() => {
               storeNum(number,Date())
               motionStop=true;
-            }, 500);
+              document.getElementById('test').innerHTML=motionStop;
+            }, 1500);
       }
       }
   })
