@@ -20,8 +20,9 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  var start=window.addEventListener('devicemotion', (event) => {motion(event)});
+  var start=window.addEventListener('devicemotion', (event) => {number=motion(event)});
   window.removeEventListener('devicemotion', start)
+  storeNum(number,Date())
 }
 
 function motion(event){
@@ -38,8 +39,7 @@ function motion(event){
             }, 1500);
       }
       else if(motionStop==true){
-      storeNum(number,Date())
-      return;
+      return number;
     }
     }
 }
