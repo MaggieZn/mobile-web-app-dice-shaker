@@ -19,9 +19,7 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  window.addEventListener('devicemotion', (event)=>{
-    motion(event);
-  })
+  window.addEventListener('devicemotion', motion(DeviceMotionEvent))
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 
 }
