@@ -18,7 +18,7 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  window.addEventListener('devicemotion', (event) => {
+  document.addEventListener('devicemotion', (event) => {
     const {acceleration} = event;
     motionStop=false;
 
