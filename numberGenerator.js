@@ -10,7 +10,6 @@ const STORAGE_KEY="dice_history"
 
 //stores accelerometer permission
 var accelerometerPerm=false;
-localStorage.clear();
 
 function generate(){
   requestPermission();
@@ -24,22 +23,16 @@ function generate(){
 
     if (acceleration) {
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
-      
+
       if(magnitude>1 && motionStop==false){
         number=getd20Roll()
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
               storeNum(number, Date())
-              //if (magnitude<=1){
-              //}
+              return;
             }, 500);
-        //getNum();
-        //return;
       }
-      /*setTimeout(() => {
-              genNum();
-            }, 500);*/
     }
   })
 }
