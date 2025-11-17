@@ -11,8 +11,6 @@ const STORAGE_KEY="dice_history"
 //stores accelerometer permission
 var accelerometerPerm=false;
 var motionStop=false;
-var start;
-var number=0;
 
 function generate(){
   requestPermission();
@@ -22,13 +20,10 @@ function generate(){
   document.body.removeEventListener("click", genNum(), false);
   return;*/
   window.addEventListener('devicemotion', (event)=>{
-    number=motion(event);
+    motion(event);
   })
-
-
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 
-  storeNum(number,Date())
 }
 
 /*var myButton = document.getElementById('myButton');
@@ -59,7 +54,8 @@ function motion(event){
       }
       else if(motionStop==true){
         window.removeEventListener('devicemotion',motion)
-        return number;
+        storeNum(number,Date())
+        return;
     }
     }
 }
