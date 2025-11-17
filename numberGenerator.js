@@ -11,7 +11,7 @@ const STORAGE_KEY="dice_history"
 //stores accelerometer permission
 var accelerometerPerm=false;
 var motionStop=false;
-var stored=false;
+var stored=false; //for number being stored when rolled
 
 function generate(){
   requestPermission();
@@ -22,7 +22,6 @@ function generate(){
   document.body.removeEventListener("click", genNum(), false);
   return;*/
   window.addEventListener('devicemotion', (event)=>{motion(event)})
-  //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 }
 
 /*var myButton = document.getElementById('myButton');
@@ -59,6 +58,7 @@ function motion(event){
     }
 }
 
+/*Clear localstorage/history */
 function deleteStore(){
   localStorage.clear();
 }
@@ -125,6 +125,7 @@ function getNum(){
   return getNumbers
 }
 
+/*Adds local storage results to history page in a list*/
 function addToHistory(){
   const nums=getNum();
   console.log(nums)
