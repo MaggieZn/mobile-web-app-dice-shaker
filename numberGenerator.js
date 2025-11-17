@@ -31,11 +31,9 @@ function generate(){
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
-              document.getElementById('test').innerHTML=motionStop;
             }, 1500);
       }
       else if(motionStop==true){
-      localStorage.clear();
       storeNum(number,Date())
       return;
     }
