@@ -23,6 +23,7 @@ function generate(){
   var start=function(){window.addEventListener('devicemotion', (event) => {number=motion(event)})};
   window.removeEventListener('devicemotion', start)
   storeNum(number,Date())
+  return;
 }
 
 function motion(event){
