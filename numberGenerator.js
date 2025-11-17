@@ -10,6 +10,7 @@ const STORAGE_KEY="dice_history"
 
 //stores accelerometer permission
 var accelerometerPerm=false;
+var motionStop=false;
 
 function generate(){
   requestPermission();
@@ -19,7 +20,7 @@ function generate(){
   return;*/
   window.addEventListener('devicemotion', (event) => {
     const {acceleration} = event;
-    const motionStop=false;
+    motionStop=false;
 
     if (acceleration) {
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
