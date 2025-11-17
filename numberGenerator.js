@@ -18,7 +18,7 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  document.addEventListener('devicemotion', (event) => {
+  window.addEventListener('devicemotion', (event) => {
     const {acceleration} = event;
     motionStop=false;
 
@@ -30,9 +30,11 @@ function generate(){
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
-              storeNum(number, Date())
-              return;
             }, 500);
+      }
+      else if(motionStop==true){
+        storeNum(number, Date())
+        return;
       }
     }
   })
