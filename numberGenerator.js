@@ -21,7 +21,6 @@ function generate(){
   return;*/
   window.addEventListener('devicemotion', motion(DeviceMotionEvent))
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
-
 }
 
 /*var myButton = document.getElementById('myButton');
@@ -53,7 +52,6 @@ function motion(event){
       else if(motionStop==true){
         window.removeEventListener('devicemotion',motion)
         storeNum(number,Date())
-        return;
     }
     }
 }
