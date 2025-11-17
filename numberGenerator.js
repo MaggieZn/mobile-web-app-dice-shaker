@@ -14,6 +14,7 @@ var motionStop=false;
 
 function generate(){
   requestPermission();
+  var number;
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
@@ -30,15 +31,14 @@ function generate(){
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
+              window.removeEventListener('devicemotion', motion)
+              return;
             }, 500);
-        if(motionStop==true){
-          storeNum(number, Date())
-          window.removeEventListener('devicemotion', motion)
-          return;
-        }
       }
     }
   })}
+
+  storeNum(num, Date())
 }
 
 function genNum(){
