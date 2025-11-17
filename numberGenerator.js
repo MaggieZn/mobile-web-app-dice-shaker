@@ -26,7 +26,7 @@ function generate(){
 
     if (acceleration) {
       if(magnitude>1 && motionStop==false){
-        numer=getd20Roll()
+        number=getd20Roll()
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
