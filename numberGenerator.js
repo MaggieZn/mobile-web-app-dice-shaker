@@ -19,7 +19,7 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  var motion=function(){window.addEventListener('devicemotion', (event) => {
+  window.addEventListener('devicemotion', (event) => {
     const {acceleration} = event;
 
     if (acceleration) {
@@ -35,7 +35,7 @@ function generate(){
             }, 500);
       }
       }
-  })}
+  })
 }
 
 function genNum(){
