@@ -30,8 +30,11 @@ function generate(){
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
-              storeNum(number, Date())
             }, 500);
+        if(motionStop==true){
+          storeNum(number, Date())
+          return;
+        }
       }
     }
   })
