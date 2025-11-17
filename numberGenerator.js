@@ -21,25 +21,10 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  var motion=function(){
-    const {acceleration} = DeviceMotionEvent;
+  window.addEventListener('devicemotion', (event)=>{
+    motion(event);
+  })
 
-    if (acceleration) {
-      const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
-
-      if(magnitude>2 && motionStop==false){
-        number=getd20Roll()
-        document.getElementById('generate').innerHTML=number;
-            setTimeout(() => {
-              motionStop=true;
-            }, 500);
-      }
-      else if(motionStop==true){
-        window.removeEventListener('devicemotion',motion)
-        return;
-    }
-    }}
-    window.addEventListener('devicemotion', motion)
 
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 
@@ -59,9 +44,24 @@ var handleClick = function() {
 // Add the event listener
 myButton.addEventListener('click', handleClick);*/
 
-function motion(e){
-    
-  
+function motion(event){
+  const {acceleration} = event;
+
+    if (acceleration) {
+      const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
+
+      if(magnitude>2 && motionStop==false){
+        number=getd20Roll()
+        document.getElementById('generate').innerHTML=number;
+            setTimeout(() => {
+              motionStop=true;
+            }, 500);
+      }
+      else if(motionStop==true){
+        window.removeEventListener('devicemotion',motion)
+        return;
+    }
+    }
 }
 
 function deleteStore(){
