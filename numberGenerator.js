@@ -22,7 +22,7 @@ function generate(){
   document.body.removeEventListener("click", genNum(), false);
   return;*/
   window.addEventListener('devicemotion', (event)=>{
-    motion(event);
+    number=motion(event);
   })
 
 
@@ -59,7 +59,7 @@ function motion(event){
       }
       else if(motionStop==true){
         window.removeEventListener('devicemotion',motion)
-        return;
+        return number;
     }
     }
 }
