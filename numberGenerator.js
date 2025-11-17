@@ -11,7 +11,7 @@ const STORAGE_KEY="dice_history"
 //stores accelerometer permission
 var accelerometerPerm=false;
 var motionStop=false;
-var number;
+//var number;
 
 function generate(){
   requestPermission();
@@ -22,7 +22,7 @@ function generate(){
   return;*/
   var start=window.addEventListener('devicemotion', (event) => {motion(event)});
   window.removeEventListener('devicemotion', start)
-  storeNum(number,Date())
+  storeNum(start,Date())
 }
 
 function motion(event){
@@ -39,7 +39,7 @@ const {acceleration} = event;
             }, 1500);
       }
       else if(motionStop==true){
-      return;
+      return number;
     }
     }
 }
