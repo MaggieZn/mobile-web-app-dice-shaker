@@ -14,7 +14,6 @@ var motionStop=false;
 
 function generate(){
   requestPermission();
-  requestPersStore()
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
@@ -31,11 +30,8 @@ function generate(){
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
+              storeNum(number, Date())
             }, 500);
-      }
-      else if(motionStop==true){
-        storeNum(number, Date())
-        return;
       }
     }
   })
