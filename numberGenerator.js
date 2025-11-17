@@ -11,15 +11,17 @@ const STORAGE_KEY="dice_history"
 //stores accelerometer permission
 var accelerometerPerm=false;
 var motionStop=false;
+var stored=false;
 
 function generate(){
   requestPermission();
   motionStop=false;
+  stored=false;
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  window.addEventListener('devicemotion', motion(DeviceMotionEvent))
+  window.addEventListener('devicemotion', (event)=>{motion(event)})
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 }
 
@@ -49,10 +51,9 @@ function motion(event){
               motionStop=true;
             }, 500);
       }
-      else if(motionStop==true){
-        window.removeEventListener('devicemotion',motion)
+      else if(motionStop==true && stored==false){
         storeNum(number,Date())
-        return;
+        stored=true;
     }
     }
 }
