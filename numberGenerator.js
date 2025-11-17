@@ -11,6 +11,7 @@ const STORAGE_KEY="dice_history"
 //stores accelerometer permission
 var accelerometerPerm=false;
 var motionStop=false;
+var start;
 var number=0;
 
 function generate(){
@@ -20,14 +21,29 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  var start=function(){window.addEventListener('devicemotion', (event) => {number=motion(event)})};
-  window.removeEventListener('devicemotion', start)
+  motion();
+
+  //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
+
   storeNum(number,Date())
-  return;
 }
 
-function motion(event){
-  const {acceleration} = event;
+/*var myButton = document.getElementById('myButton');
+
+// Define the event handler as an anonymous function
+var handleClick = function() {
+  console.log('Button clicked!');
+  
+  // Remove the event listener using the stored reference
+  myButton.removeEventListener('click', handleClick);
+};
+
+// Add the event listener
+myButton.addEventListener('click', handleClick);*/
+
+function motion(){
+  window.addEventListener('devicemotion', (event)=>{
+    const {acceleration} = event;
 
     if (acceleration) {
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
@@ -40,9 +56,12 @@ function motion(event){
             }, 1500);
       }
       else if(motionStop==true){
+      window.removeEventListener('devicemotion', motion())
       return number;
     }
     }
+  })
+  
 }
 
 function deleteStore(){
