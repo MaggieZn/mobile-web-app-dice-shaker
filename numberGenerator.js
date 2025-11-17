@@ -21,12 +21,12 @@ function generate(){
   document.body.removeEventListener("click", genNum(), false);
   return;*/
   var start=window.addEventListener('devicemotion', (event) => {motion(event)});
-  window.removeEventListener('devicemotion', start)
   storeNum(number,Date())
+  window.removeEventListener('devicemotion', start)
 }
 
 function motion(event){
-const {acceleration} = event;
+  const {acceleration} = event;
 
     if (acceleration) {
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
