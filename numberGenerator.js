@@ -11,17 +11,22 @@ const STORAGE_KEY="dice_history"
 //stores accelerometer permission
 var accelerometerPerm=false;
 var motionStop=false;
+var number;
 
 function generate(){
   requestPermission();
-  var number;
   motionStop=false;
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  window.addEventListener('devicemotion', (event) => {
-    const {acceleration} = event;
+  var start=window.addEventListener('devicemotion', (event) => {motion(event)});
+  window.removeEventListener('devicemotion', start)
+  storeNum(number,Date())
+}
+
+function motion(event){
+const {acceleration} = event;
 
     if (acceleration) {
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
@@ -34,17 +39,9 @@ function generate(){
             }, 1500);
       }
       else if(motionStop==true){
-      storeNum(number,Date())
       return;
     }
     }
-  })
-}
-
-function genNum(){
-  number=getd20Roll();
-  document.getElementById('generate').innerHTML=number;
-  storeNum(number, Date());
 }
 
 /*Requests device permsission for accelerometer usage (if available) */
@@ -77,10 +74,6 @@ function requestPermission() {
         console.log('requestPermission not required or supported on this browser');
       }
     }
-}
-
-function motionRoll(){
-
 }
 
 /*Requests Persistent Storage from browser/device*/
