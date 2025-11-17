@@ -25,12 +25,12 @@ function generate(){
     const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
     if (acceleration) {
-      if(magnitude>3){
+      if(magnitude>1){
             setTimeout(() => {
-              if (magnitude<3){
+              //if (magnitude<=1){
                 genNum();
                 return;
-              }
+              //}
             }, 500);
         //getNum();
         //return;
