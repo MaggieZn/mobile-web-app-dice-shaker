@@ -52,6 +52,7 @@ function motion(event){
       else if(motionStop==true){
         window.removeEventListener('devicemotion',motion)
         storeNum(number,Date())
+        return;
     }
     }
 }
