@@ -22,22 +22,19 @@ function generate(){
     const {acceleration} = event;
     const motionStop=false;
 
-    const accelerationX=acceleration.alpha
+    const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
     if (acceleration) {
-      if(accelerationX==0){
-        setTimeout(() => {
-              genNum();
-              return;
+      if(magnitude>3){
+            setTimeout(() => {
+              if (magnitude<3){
+                genNum();
+                return;
+              }
             }, 500);
         //getNum();
         //return;
       }
-
-      if(motionStop==true){
-        
-      }
-
       /*setTimeout(() => {
               genNum();
             }, 500);*/
