@@ -21,8 +21,7 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  motion();
-  window.removeEventListener('devicemotion', motion())
+  window.addEventListener('devicemotion', motion())
 
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 
@@ -42,8 +41,7 @@ var handleClick = function() {
 // Add the event listener
 myButton.addEventListener('click', handleClick);*/
 
-function motion(){
-  window.addEventListener('devicemotion', (event)=>{
+function motion(event){
     const {acceleration} = event;
 
     if (acceleration) {
@@ -54,13 +52,13 @@ function motion(){
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
-            }, 1500);
+            }, 500);
       }
       else if(motionStop==true){
+      window.removeEventListener('devicemotion', motion())
       return number;
     }
     }
-  })
   
 }
 
