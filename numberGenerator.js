@@ -30,15 +30,12 @@ function generate(){
         number=getd20Roll()
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
+              storeNum(number,Date())
               motionStop=true;
-              window.removeEventListener('devicemotion', motion)
-              return;
             }, 500);
       }
-    }
+      }
   })}
-
-  storeNum(num, Date())
 }
 
 function genNum(){
