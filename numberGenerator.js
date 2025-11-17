@@ -32,14 +32,13 @@ function generate(){
             setTimeout(() => {
               motionStop=true;
               document.getElementById('test').innerHTML=motionStop;
-              
             }, 1500);
       }
-    }
-    else{
+      else if(motionStop==true){
       localStorage.clear();
       storeNum(number,Date())
       return;
+    }
     }
   })
 }
