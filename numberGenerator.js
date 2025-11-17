@@ -20,7 +20,7 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  var start=window.addEventListener('devicemotion', (event) => {number=motion(event)});
+  var start=function(){window.addEventListener('devicemotion', (event) => {number=motion(event)})};
   window.removeEventListener('devicemotion', start)
   storeNum(number,Date())
 }
