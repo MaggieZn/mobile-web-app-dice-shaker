@@ -14,6 +14,7 @@ var motionStop=false;
 
 function generate(){
   requestPermission();
+  requestPersStore()
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
