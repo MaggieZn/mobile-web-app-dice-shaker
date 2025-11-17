@@ -22,6 +22,7 @@ function generate(){
   document.body.removeEventListener("click", genNum(), false);
   return;*/
   motion();
+  window.removeEventListener('devicemotion', motion())
 
   //REMOVE EVENT LISTENER ONLY NEEDS A FUNCTION TO BE REFERRED TO.
 
@@ -56,7 +57,6 @@ function motion(){
             }, 1500);
       }
       else if(motionStop==true){
-      window.removeEventListener('devicemotion', motion())
       return number;
     }
     }
