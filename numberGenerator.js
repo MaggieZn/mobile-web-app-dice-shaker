@@ -54,6 +54,7 @@ function motion(event){
       else if(motionStop==true && stored==false){
         storeNum(number,Date())
         stored=true;
+        return;
     }
     }
 }
