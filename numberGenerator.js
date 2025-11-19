@@ -43,7 +43,7 @@ function motion(event){
     if (acceleration) {
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
-      if(magnitude>2 && motionStop==false){
+      if(magnitude>1 && motionStop==false){
         number=getd20Roll()
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
