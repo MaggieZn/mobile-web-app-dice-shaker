@@ -21,7 +21,11 @@ function generate(){
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
   return;*/
-  window.addEventListener('devicemotion', (event)=>{motion(event)})
+
+
+  num=getd20Roll();
+  storeNum(num,Date())
+  //window.addEventListener('devicemotion', (event)=>{motion(event)})
 }
 
 /*var myButton = document.getElementById('myButton');
