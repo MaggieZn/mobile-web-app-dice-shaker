@@ -13,6 +13,8 @@ var accelerometerPerm=false;
 var motionStop=false;
 var stored=false; //for number being stored when rolled
 
+var sidedDie=20;
+
 function generate(){
   requestPermission();
   motionStop=false;
@@ -22,10 +24,7 @@ function generate(){
   document.body.removeEventListener("click", genNum(), false);
   return;*/
 
-
-  num=getd20Roll();
-  storeNum(num,Date())
-  //window.addEventListener('devicemotion', (event)=>{motion(event)})
+  window.addEventListener('devicemotion', (event)=>{motion(event)})
 }
 
 /*var myButton = document.getElementById('myButton');
@@ -55,7 +54,7 @@ function motion(event){
             }, 500);
       }
       else if(motionStop==true && stored==false){
-        storeNum(number,Date())
+        storeNum(number,Date(), sidedDie)
         stored=true;
         return;
     }
@@ -111,13 +110,13 @@ async function requestPersStore() {
 }
 
 /*Stores number in local storage */
-function storeNum(num, date){
+function storeNum(num, date, sidedDie){
   requestPersStore();
 
   //rolled numbers variable and pushed to array
   var rolledNums=getNum();
   //var position=rolledNums.length+1
-  rolledNums.push({num, date});
+  rolledNums.push({num, date, sidedDie});
   rolledNums.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(rolledNums));
@@ -134,7 +133,6 @@ function getNum(){
 /*Adds local storage results to history page in a list*/
 function addToHistory(){
   const nums=getNum();
-  const position=0;
   console.log(nums)
 
   const historyContainer=document.getElementById('history')
