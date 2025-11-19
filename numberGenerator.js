@@ -112,7 +112,6 @@ function storeNum(num, date){
 
   //rolled numbers variable and pushed to array
   var rolledNums=getNum();
-  rolledNums.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
   //var position=rolledNums.length+1
   rolledNums.push({num, date});
   rolledNums.sort((a, b) => new Date(b.date) - new Date(a.date));
