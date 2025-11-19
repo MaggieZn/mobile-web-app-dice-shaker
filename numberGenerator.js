@@ -61,6 +61,7 @@ function motion(event){
 /*Clear localstorage/history */
 function deleteStore(){
   localStorage.clear();
+  addToHistory();
 }
 
 /*Requests device permsission for accelerometer usage (if available) */
@@ -111,8 +112,10 @@ function storeNum(num, date){
 
   //rolled numbers variable and pushed to array
   var rolledNums=getNum();
-  var position=rolledNums.length+1
-  rolledNums.push({num, date, position});
+  rolledNums.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+  //var position=rolledNums.length+1
+  rolledNums.push({num, date});
+  rolledNums.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(rolledNums));
 }
@@ -128,6 +131,7 @@ function getNum(){
 /*Adds local storage results to history page in a list*/
 function addToHistory(){
   const nums=getNum();
+  const position=0;
   console.log(nums)
 
   const historyContainer=document.getElementById('history')
@@ -143,19 +147,20 @@ function addToHistory(){
   }
 
   nums.forEach((num) => {
-      historyContainer.appendChild(historyListing(num));
+      position=position+1
+      historyContainer.appendChild(historyListing(num, position));
   });
 
 }
 
 /*Creates a list object to allow history*/
-function historyListing(num){
+function historyListing(num, position){
   const liElement=document.createElement("li")
 
   liElement.className="list-group-item"
   liElement.innerHTML=`<li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">${num.position}</h5>
+                    <h5 class="mb-1">${position}</h5>
                     <small class="text-body-secondary">${num.date}</small>
                 </div>
                 <p class="mb-1">${num.num}</p>
