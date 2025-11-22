@@ -215,6 +215,9 @@ function roll(){
     case 12:
        rolled=Math.floor(Math.random() * 12)+ 1;
     break;
+    case 100:
+       rolled=Math.floor(Math.random() * 100)+ 1;
+    break;
   }
 
   return rolled;
