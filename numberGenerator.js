@@ -1,12 +1,5 @@
-/*Logic:
-- once button is pressed
-  - wait for either Tap or Accelerometer trigger
-  - generate number once stopped accelerometer
-  - generate number once tapped again*/
-
-
-//stores numbers rolled
-const STORAGE_KEY="dice_history"
+const STORAGE_KEY="dice_history" //stores numbers rolled
+const SIDED_DIE="chosen_dice_type"
 
 //stores accelerometer permission
 var accelerometerPerm=false;
@@ -15,10 +8,27 @@ var stored=false; //for number being stored when rolled
 
 var sidedDie=20;
 
+function updateChosenDie(){
+  var diceType=getDiceType();
+  if(diceType!=null){
+    sidedDie=diceType;
+  }
+  else{
+    return;
+  }
+}
+
+function currentDiceHome(){
+  updateChosenDie();
+  const diceType=document.getElementById('diceTypeHome')
+  diceType.innerHTML=sidedDie;
+}
+
 function generate(){
   requestPermission();
   motionStop=false;
   stored=false;
+  updateChosenDie()
   
   /*document.body.addEventListener("click", genNum());
   document.body.removeEventListener("click", genNum(), false);
@@ -47,7 +57,7 @@ function motion(event){
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
       if(magnitude>1 && motionStop==false){
-        number=getd20Roll()
+        number=roll()
         document.getElementById('generate').innerHTML=number;
             setTimeout(() => {
               motionStop=true;
@@ -167,6 +177,48 @@ function historyListing(num){
                 <small class="text-body-secondary">And some muted small print.</small>`;
 
   return liElement;
+}
+
+/*Stores dice type user has selected*/
+function changeDice(num){
+  requestPersStore();
+  var changeDie=num;
+
+  localStorage.setItem(SIDED_DIE, JSON.stringify(changeDie));
+  alert("Dice type changed to D"+num)
+}
+
+function getDiceType(){
+  const data=localStorage.getItem(SIDED_DIE)
+
+  const getDieType=data?JSON.parse(data):[];
+  return getDieType;
+}
+
+function roll(){
+  var rolled;
+  switch(sidedDie){
+    case 20:
+      rolled= Math.floor(Math.random() * 20)+ 1;
+    break;
+    case 4:
+       rolled=Math.floor(Math.random() * 4)+ 1;
+    break;
+    case 6:
+       rolled=Math.floor(Math.random() * 6)+ 1;
+    break;
+    case 8:
+       rolled=Math.floor(Math.random() * 8)+ 1;
+    break;
+    case 10:
+       rolled=Math.floor(Math.random() * 10)+ 1;
+    break;
+    case 12:
+       rolled=Math.floor(Math.random() * 12)+ 1;
+    break;
+  }
+
+  return rolled;
 }
 
 /*generates a random d20 roll (1-20 number)*/

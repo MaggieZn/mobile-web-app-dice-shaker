@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device, initial-scale=1.0">
         <title>Dice Shaker</title>
 
+        <script src="numberGenerator.js"></script>
+
         <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -45,30 +47,59 @@
 
         <div class="container text-center pt-5">
             <div class="row">
-                <div class="col"> <!--card 1-->
-                    <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="col"> <!--D20-->
+                    <div class="card text-center mb-3">
                         <div class="card-body">
                             <img src="https://placehold.co/200" class="centre-image">
                             <h5 class="card-title">D20</h5>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <button type="button" class="btn btn-primary" onclick="changeDice(20)">Select</a>
                         </div>
                     </div> 
                 </div>
-                <div class="col"> <!--card 2-->
-                    <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="col"> <!--D4-->
+                    <div class="card text-center mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment 2: Electric Boogaloo</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <img src="https://placehold.co/200" class="centre-image">
+                            <h5 class="card-title">D4</h5>
+                            <button type="button" class="btn btn-primary" onclick="changeDice(4)">Select</a>
                         </div>
                     </div> 
                 </div>
-                <div class="col"> <!--card 3-->
-                    <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="col"> <!--D6-->
+                    <div class="card text-center mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Special title?????</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <img src="https://placehold.co/200" class="centre-image">
+                            <h5 class="card-title">D6</h5>
+                            <button type="button" class="btn btn-primary" onclick="changeDice(6)">Select</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"> <!--D8-->
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <img src="https://placehold.co/200" class="centre-image">
+                            <h5 class="card-title">D8</h5>
+                            <button type="button" class="btn btn-primary" onclick="changeDice(8)">Select</a>
+                        </div>
+                    </div> 
+                </div>
+                <div class="col"> <!--D10-->
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <img src="https://placehold.co/200" class="centre-image">
+                            <h5 class="card-title">D10</h5>
+                            <button type="button" class="btn btn-primary" onclick="changeDice(10)">Select</a>
+                        </div>
+                    </div> 
+                </div>
+                <div class="col"> <!--D12-->
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <img src="https://placehold.co/200" class="centre-image">
+                            <h5 class="card-title">D12</h5>
+                            <button type="button" class="btn btn-primary" onclick="changeDice(12)">Select</a>
                         </div>
                     </div> 
                 </div>
