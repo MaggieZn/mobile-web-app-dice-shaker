@@ -13,16 +13,12 @@ function updateChosenDie(){
   if(diceType!=null){
     sidedDie=diceType;
   }
-  else{
-    sidedDie=20;
-    return;
-  }
 }
 
 function currentDiceHome(){
   updateChosenDie();
   const diceType=document.getElementById('diceTypeHome')
-  diceType.innerHTML=sidedDie;
+  diceType.innerHTML="D"+sidedDie;
 }
 
 function generate(){
@@ -51,16 +47,18 @@ var handleClick = function() {
 // Add the event listener
 myButton.addEventListener('click', handleClick);*/
 
+/*Detects motion from user and rolls number*/
 function motion(event){
   const {acceleration} = event;
 
     if (acceleration) {
+      //change in motion
       const magnitude=Math.sqrt(Math.pow(acceleration.x || 0,2)+Math.pow(acceleration.y || 0,2)+Math.pow(acceleration.z || 0,2));
 
       if(magnitude>1 && motionStop==false){
         number=roll()
         document.getElementById('generate').innerHTML=number;
-            setTimeout(() => {
+            setTimeout(() => { //once user stops shaking phone
               motionStop=true;
             }, 500);
       }
@@ -189,13 +187,13 @@ function changeDice(num){
   alert("Dice type changed to D"+num)
 }
 
+/*Returns user selected dice type in local storage */
 function getDiceType(){
-  const data=localStorage.getItem(SIDED_DIE)
-
-  const getDieType=data?JSON.parse(data):[];
-  return getDieType;
+  const data=JSON.parse(localStorage.getItem(SIDED_DIE))
+  return data;
 }
 
+/*Generates a random number depending on dice type */
 function roll(){
   var rolled;
   switch(sidedDie){
