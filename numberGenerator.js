@@ -70,7 +70,7 @@ function motion(event){
     }
 }
 
-/*Clear localstorage/history */
+/*Clear localstorage history */
 function deleteStore(){
   localStorage.removeItem(STORAGE_KEY);
   addToHistory();
@@ -221,9 +221,4 @@ function roll(){
   }
 
   return rolled;
-}
-
-/*generates a random d20 roll (1-20 number)*/
-function getd20Roll() {
-  return Math.floor(Math.random() * 20)+ 1;
 }
