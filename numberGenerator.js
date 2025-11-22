@@ -14,6 +14,7 @@ function updateChosenDie(){
     sidedDie=diceType;
   }
   else{
+    sidedDie=20;
     return;
   }
 }
@@ -73,7 +74,7 @@ function motion(event){
 
 /*Clear localstorage/history */
 function deleteStore(){
-  localStorage.clear();
+  localStorage.removeItem(STORAGE_KEY);
   addToHistory();
 }
 
