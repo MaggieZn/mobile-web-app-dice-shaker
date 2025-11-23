@@ -8,6 +8,7 @@ var stored=false; //for number being stored when rolled
 
 var sidedDie=20;
 
+/*If a user has selected a dice type, it is updated accordingly*/
 function updateChosenDie(){
   var diceType=getDiceType();
   if(diceType!=null){
@@ -15,37 +16,22 @@ function updateChosenDie(){
   }
 }
 
+/*Displays current dice type in use*/
 function currentDiceHome(){
   updateChosenDie();
   const diceType=document.getElementById('diceTypeHome')
   diceType.innerHTML="D"+sidedDie;
 }
 
+/*Generates a dice number result based on user's selected dice*/
 function generate(){
   requestPermission();
   motionStop=false;
   stored=false;
   updateChosenDie()
-  
-  /*document.body.addEventListener("click", genNum());
-  document.body.removeEventListener("click", genNum(), false);
-  return;*/
 
   window.addEventListener('devicemotion', (event)=>{motion(event)})
 }
-
-/*var myButton = document.getElementById('myButton');
-
-// Define the event handler as an anonymous function
-var handleClick = function() {
-  console.log('Button clicked!');
-  
-  // Remove the event listener using the stored reference
-  myButton.removeEventListener('click', handleClick);
-};
-
-// Add the event listener
-myButton.addEventListener('click', handleClick);*/
 
 /*Detects motion from user and rolls number*/
 function motion(event){
@@ -131,7 +117,7 @@ function storeNum(num, date, sidedDie){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(rolledNums));
 }
 
-/*Returns number from local storage*/
+/*Returns result numbers from local storage*/
 function getNum(){
   const data=localStorage.getItem(STORAGE_KEY);
 
@@ -146,7 +132,7 @@ function addToHistory(){
 
   const historyContainer=document.getElementById('history')
 
-  if (nums.length==0){
+  if (nums.length==0){ //when there are 0 results
     historyContainer.innerHTML=
             `<li class="list-group-item">
                 <div class="d-flex w-100 justify-content-between">
