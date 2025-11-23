@@ -1,13 +1,13 @@
 {
-    "name": "Dice Shaker",
-    "short_name": "Dice",
+    "name": "Dice and Slice",
+    "short_name": "Dice Shaker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "description": "A simple Progressive Web App example.",
     "icons": [
         {
-            "src": "icon.png",
+            "src": "/images/icon.png",
             "sizes": "200x200",
             "type": "image/png"
         }
