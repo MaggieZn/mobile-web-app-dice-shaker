@@ -20,7 +20,7 @@ function updateChosenDie(){
 function currentDiceHome(){
   updateChosenDie();
   const diceType=document.getElementById('diceTypeHome')
-  diceType.innerHTML="D"+sidedDie;
+  diceType.innerHTML="Current dice: D"+sidedDie;
 }
 
 /*Generates a dice number result based on user's selected dice*/
@@ -29,6 +29,8 @@ function generate(){
   motionStop=false;
   stored=false;
   updateChosenDie()
+
+  document.getElementById('rolledButton').innerHTML="Please shake your device for result...";
 
   window.addEventListener('devicemotion', (event)=>{motion(event)})
 }
@@ -51,6 +53,7 @@ function motion(event){
       else if(motionStop==true && stored==false){
         storeNum(number,Date(), sidedDie)
         stored=true;
+        document.getElementById('rolledButton').innerHTML="Roll";
         return;
     }
     }
@@ -90,6 +93,7 @@ function requestPermission() {
       }
       else {
         console.log('requestPermission not required or supported on this browser');
+        alert("Browser may not support acceleromter features if number is not being rolled.");
       }
     }
 }
@@ -158,8 +162,7 @@ function historyListing(num){
                     <h5 class="mb-1">D${num.sidedDie}</h5>
                     <small class="text-body-secondary">${num.date}</small>
                 </div>
-                <p class="mb-1">${num.num}</p>
-                <small class="text-body-secondary">And some muted small print.</small>`;
+                <p class="mb-1">${num.num}</p>`;
 
   return liElement;
 }
@@ -171,6 +174,8 @@ function changeDice(num){
 
   localStorage.setItem(SIDED_DIE, JSON.stringify(changeDie));
   alert("Dice type changed to D"+num)
+
+  currentDiceHome()
 }
 
 /*Returns user selected dice type in local storage */

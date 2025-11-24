@@ -12,7 +12,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </head>
 
-    <body>
+    <body onload="currentDiceHome()">
         <!--<h1>Dice and Slice</h1>-->
 
         <!--menu button-->
@@ -47,6 +47,7 @@
 
         <div class="container text-center pt-5">
             <h1>Customise Dice Type</h1>
+            <h2 id="diceTypeHome"></h2>
             <div class="row">
                 <div class="col"> <!--D20-->
                     <div class="card text-center mb-3">
