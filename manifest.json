@@ -4,10 +4,10 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
-    "description": "A simple Progressive Web App example.",
+    "description": "A simple dice shaker.",
     "icons": [
         {
-            "src": "/images/icon.png",
+            "src": "images/icon.png",
             "sizes": "300x300",
             "type": "image/png"
         }
